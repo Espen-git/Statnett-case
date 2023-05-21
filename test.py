@@ -48,10 +48,10 @@ for js in json_files:
         jsons_data.update( {js: pd.DataFrame(json_text).loc[:, columns]} )
 
 
-# TODO plot data
-
-
-
 # TODO run continusly and repeat every minute
+
+
+
+# TODO plot data
 # TODO start/stop input
 # TODO ploting interface   

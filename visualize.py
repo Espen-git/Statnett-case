@@ -19,17 +19,19 @@ def plot_selected_data(data, agregate_selection):
         for columname in values.columns:      
             agregate_datafields[columname] = pd.concat([agregate_datafields[columname], values.loc[:,columname].to_frame().T], ignore_index=True)
         
-        timeAxis.append(datetime.strptime(timestamp, '%Y-%m-%d--%H-%M-%S'))
+        timeAxis.append(datetime.strptime(timestamp, '%Y-%m-%d--%H-%M-%S')) # Do I need this?
 
+    # Calculate row and column numbers for subplots
     number_of_plots = len(agregate_datafields)
     plot_columns = 3
-
     plot_rows = number_of_plots // plot_columns
+    # Add one row if nessesary
     if number_of_plots % plot_columns != 0:
         plot_rows += 1
     
     Position = range(1,number_of_plots + 1)
 
+    # Plott all plots
     fig = plt.figure(1); k=0
     for data_name, df in agregate_datafields.items():
         ax = fig.add_subplot(plot_rows, plot_columns, Position[k])
@@ -38,7 +40,7 @@ def plot_selected_data(data, agregate_selection):
         ax.plot(timestamps, df)
         ax.set_ylabel(data_name)
         ax.legend(agregate_selection)
-        ax.set_xticks([timestamps[0], timestamps[-1]])
+        ax.set_xticks([timestamps[0], timestamps[-1]]) # Show first and last x-axis tick
     
     plt.show()
 
